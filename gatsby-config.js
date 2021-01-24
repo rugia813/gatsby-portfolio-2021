@@ -11,6 +11,15 @@ module.exports = {
         trackingId: "UA-127585723-1",
       },
     },
+    {
+      resolve: `gatsby-plugin-emotion`,
+      options: {
+        sourceMap: true,
+        autoLabel: "dev-only",
+        labelFormat: `[local]`,
+        cssPropOptimization: true,
+      },
+    },
     "gatsby-plugin-react-helmet",
   ],
 };
