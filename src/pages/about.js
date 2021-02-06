@@ -2,12 +2,6 @@ import React from "react"
 import styled from "@emotion/styled"
 import { css } from "@emotion/react"
 const Container = styled.div`
-  margin: 3rem auto;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `
 const UserWrapper = styled.div`
   display: flex;
@@ -58,21 +52,21 @@ const User = props => (
     <Test>11</Test>
   </UserWrapper>
 )
+const Stackoverflow = () => (
+  <a href="https://stackoverflow.com/users/10253925/jay-li">
+    <img src="https://stackoverflow.com/users/flair/10253925.png?theme=dark" 
+      width="208" height="58" 
+      alt="profile for Jay Li at Stack Overflow, Q&amp;A for professional and enthusiast programmers" 
+      title="profile for Jay Li at Stack Overflow, Q&amp;A for professional and enthusiast programmers"
+    />
+  </a>
+)
 export default function UsersList() {
   return (
     <Container>
       <h1 css={underline}>About Emotion</h1>
       <p>Emotion is uber cool</p>
-      <User
-        username="Jane Doe"
-        avatar="https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg"
-        excerpt="I'm Jane Doe. Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-      />
-      <User
-        username="Bob Smith"
-        avatar="https://s3.amazonaws.com/uifaces/faces/twitter/vladarbatov/128.jpg"
-        excerpt="I'm Bob smith, a vertically aligned type of guy. Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-      />
+      <Stackoverflow />
     </Container>
   )
 }
