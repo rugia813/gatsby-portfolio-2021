@@ -1,0 +1,16 @@
+backend:
+  name: github
+  repo: rugia813/gatsby-portfolio-2021
+  branch: master
+media_folder: static/assets
+public_folder: /assets
+collections:
+  - label: Work
+    name: work
+    folder: markdown/work
+    create: true
+    fields:
+      - { name: slug, label: Slug }
+      - { name: date, label: Date, widget: datetime }
+      - { name: title, label: Title }
+      - { name: body, label: Body, widget: markdown }
