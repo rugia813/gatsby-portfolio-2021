@@ -16,3 +16,22 @@ collections:
       - { name: cover, label: Cover, widget: image }
       - { name: tags, label: Tags, widget: list }
       - { name: body, label: Body, widget: markdown }
+  - label: "About"
+    name: "about"
+    files:
+    - label: "Intro"
+      name: "intro"
+      file: "markdown/about/intro.json"
+      fields:
+        - {label: Content, name: content, widget: markdown}
+    - label: Skills
+      name: skills
+      file: "markdown/about/skills.json"
+      fields:
+        - label: Skill
+          name: skill
+          widget: list
+          fields:
+          - {label: Name, name: name, widget: string}
+          - {label: Level, name: level, widget: string}
+          - {label: Logo, name: logo, widget: image}
