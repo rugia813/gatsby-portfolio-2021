@@ -104,7 +104,7 @@ export default function Layout({ children }) {
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About Me</Link></li>
-          <li>Projects</li>
+          <li><Link to="/project-list">Projects</Link></li>
           <li>Contact</li>
         </ul>
       </Nav>
