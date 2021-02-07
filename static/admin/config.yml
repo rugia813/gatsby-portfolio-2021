@@ -34,4 +34,4 @@ collections:
           fields:
           - {label: Name, name: name, widget: string}
           - {label: Level, name: level, widget: string}
-          - {label: Logo, name: logo, widget: image}
+          - {label: Logo, name: logo, widget: image, required: false}
