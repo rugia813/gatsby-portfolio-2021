@@ -2,12 +2,15 @@ import styled from "@emotion/styled"
 import { Link } from "gatsby"
 import React from "react"
 
-const navColor = '#2c3e50'
+const navColor = 'rgba(143,142,167,0.1)'
 
 const Nav = styled.nav`
   position: fixed;
   height: 100vh;
   width: 75px;
+  /* box-shadow: 5px 5px 5px 1px ${navColor}; */
+  backdrop-filter: blur(10px);
+  border-right: white 1px solid;
   background-color: ${navColor};
   color: white;
   display: flex;
@@ -102,7 +105,7 @@ const Nav = styled.nav`
   }
 `
 const Content = styled.div`
-  overflow: scroll;
+  overflow-x: hidden;
   @media (min-width: 859px){
     height: 100vh;
     width: calc(100vw - 75px);
