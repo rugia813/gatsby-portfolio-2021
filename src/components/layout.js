@@ -10,16 +10,23 @@ const Nav = styled.nav`
   width: 75px;
   background-color: ${navColor};
   color: white;
+  display: flex;
+  align-items: center;
 
   ul {
     display: flex;
     flex-direction: column;
+    flex: 1;
 
     li {
       flex: 1;
       margin: auto;
       height: 75px;
-      margin-top: 15px;
+      text-align: center;
+
+      & > a {
+        color: white;
+      }
     }
   }
 
@@ -27,31 +34,45 @@ const Nav = styled.nav`
     display: none;
   }
 
-  @media (max-width: 952px){
+  @media (min-width: 858px){
     font-size: 16px;
+    ul {
+      li {
+        writing-mode: tb;
+        transform: rotate( 180deg );
+        margin-bottom: 64px;
+      }
+    }
   }
   @media (max-width: 858px){
     height: 50px;
     width: 100vw;
-    ul{
+    ul {
       display: flex;
-      flex-direction: row;
       position: fixed;
-      width: 100vw;
-      height: 10%;
+      width: 50%;
+      height: 50%;
       background: ${navColor};
-      top: -10%;
-      left: 0;
+      top: 0;
+      left: 100%;
       text-align: left;
-      transition: top .5s;
+      transition: left .5s;
       transition-timing-function: ease-in-out;
 
-      li{
+      li {
         flex: 1;
-        margin: auto;
         text-align: center;
         font-size: 20px;
         height: auto;
+        display: flex;
+        place-items: center;
+        margin: 0;
+
+        a { 
+          display: block;
+          width: 100%;
+          /* height: 100%; */
+        }
       }
     }
     #check {
@@ -61,7 +82,7 @@ const Nav = styled.nav`
     }
     #check:checked {
       & ~ ul{
-        top: 0;
+        left: 50%;
       }
       ~ .checkbtnlabel::after{
         content: 'X';
@@ -71,6 +92,7 @@ const Nav = styled.nav`
       position: fixed;
       z-index: 5;
       display: block;
+      right: 15px;
     }
     /* .checkbtnlabel
     a:hover,a.active{
@@ -80,6 +102,7 @@ const Nav = styled.nav`
   }
 `
 const Content = styled.div`
+  overflow: scroll;
   @media (min-width: 859px){
     height: 100vh;
     width: calc(100vw - 75px);
@@ -103,9 +126,9 @@ export default function Layout({ children }) {
         </label>
         <ul>
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About Me</Link></li>
+          <li><Link to="/about">About</Link></li>
           <li><Link to="/project-list">Projects</Link></li>
-          <li>Contact</li>
+          <li><Link to="/contact">Contact</Link></li>
         </ul>
       </Nav>
       <Content>
