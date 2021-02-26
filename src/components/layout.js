@@ -3,6 +3,9 @@ import { Link } from "gatsby"
 import React from "react"
 
 const navColor = 'rgba(143,142,167,0.1)'
+const breakPoint = '858px'
+const desktop = `@media (min-width: ${breakPoint})`
+const mobile = `@media (max-width: ${breakPoint})`
 
 const Nav = styled.nav`
   position: fixed;
@@ -37,7 +40,7 @@ const Nav = styled.nav`
     display: none;
   }
 
-  @media (min-width: 858px){
+  ${desktop} {
     font-size: 16px;
     ul {
       li {
@@ -47,14 +50,14 @@ const Nav = styled.nav`
       }
     }
   }
-  @media (max-width: 858px){
+  ${mobile} {
     height: 50px;
     width: 100vw;
     ul {
       display: flex;
       position: fixed;
       width: 50%;
-      height: 50%;
+      height: 50vh;
       background: ${navColor};
       top: 0;
       left: 100%;
@@ -70,8 +73,9 @@ const Nav = styled.nav`
         display: flex;
         place-items: center;
         margin: 0;
+        background-color: ${navColor};
 
-        a { 
+        a {
           display: block;
           width: 100%;
           /* height: 100%; */
@@ -104,15 +108,18 @@ const Nav = styled.nav`
     } */
   }
 `
+const Menu = styled.ul`
+
+`
 const Content = styled.div`
   overflow-x: hidden;
-  @media (min-width: 859px){
+  ${desktop} {
     height: 100vh;
     width: calc(100vw - 75px);
     margin-left: 75px;
     padding: 5px;
   }
-  @media (max-width: 858px){
+  ${mobile} {
     height: calc(100vh - 50px);
     width: 100vw;
     padding-top: 50px;

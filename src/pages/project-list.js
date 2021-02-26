@@ -10,7 +10,7 @@ const Project = ({title, content, slug, cover, tags}) => (
         <div>{title}</div>
         <div>{content}</div>
         <div>{tags}</div>
-        <div><img src={cover} /></div>
+        <div><img src={cover} alt={title + ' image'} /></div>
     </ProjectPanel>
 )
 
@@ -20,8 +20,8 @@ export default function ProjectList({ data }) {
     return  (
         <ul>
             {
-                edges.map(({node}) => 
-                    <Project 
+                edges.map(({node}) =>
+                    <Project
                         key={node.frontmatter.slug}
                         title={node.frontmatter.title}
                         content={node.html}
