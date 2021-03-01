@@ -63,7 +63,7 @@ const Menu = styled.ul`
       height: 75px;
       text-align: center;
 
-      & > a {
+      a {
         color: white;
       }
     }
@@ -73,6 +73,29 @@ const Menu = styled.ul`
         writing-mode: tb;
         transform: rotate( 180deg );
         margin-bottom: 64px;
+
+        :nth-of-type(1) { --fadeInDelay: .6s; }
+        :nth-of-type(2) { --fadeInDelay: .4s; }
+        :nth-of-type(3) { --fadeInDelay: .2s; }
+        :nth-of-type(4) { --fadeInDelay: 0s; }
+
+        .bound {
+          overflow: hidden;
+          a {
+            position: relative;
+            bottom: 100%;
+            animation: fadeIn 1.2s forwards;
+            animation-delay: var(--fadeInDelay);
+            animation-timing-function: ease;
+          }
+          /* a[aria-current] {
+            border-left: 3px solid;
+          } */
+        }
+      }
+      @keyframes fadeIn {
+      to {
+        bottom: 0%;
       }
     }
     ${mobile} {
@@ -105,6 +128,7 @@ const Menu = styled.ul`
       }
     }
   }
+ }
 `
 const Content = styled.div`
   overflow-x: hidden;
@@ -131,10 +155,10 @@ export default function Layout({ children }) {
           {/* <i class="fas fa-bars"></i> */}
         </label>
         <Menu>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/project-list">Projects</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
+          <li><div className="bound"><Link to="/">Home</Link></div></li>
+          <li><div className="bound"><Link to="/about">About</Link></div></li>
+          <li><div className="bound"><Link to="/project-list">Projects</Link></div></li>
+          <li><div className="bound"><Link to="/contact">Contact</Link></div></li>
         </Menu>
       </Nav>
       <Content>
