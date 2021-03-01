@@ -13,13 +13,46 @@ const Nav = styled.nav`
   width: 75px;
   /* box-shadow: 5px 5px 5px 1px ${navColor}; */
   backdrop-filter: blur(10px);
-  border-right: white 1px solid;
   background-color: ${navColor};
   color: white;
   display: flex;
   align-items: center;
 
-  ul {
+  #check, .checkbtnlabel {
+    display: none;
+  }
+
+  ${desktop} {
+    font-size: 16px;
+    border-right: white 1px solid;
+  }
+  ${mobile} {
+    height: 50px;
+    width: 100vw;
+    border-bottom: white 1px solid;
+    #check {
+      ~ .checkbtnlabel::after {
+        content: '三';
+      }
+    }
+    #check:checked {
+      & ~ ul{
+        left: 50%;
+      }
+      ~ .checkbtnlabel::after{
+        content: 'X';
+      }
+    }
+    .checkbtnlabel{
+      position: fixed;
+      z-index: 5;
+      display: block;
+      right: 15px;
+    }
+  }
+`
+const Menu = styled.ul`
+  ${Nav} & {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -34,26 +67,15 @@ const Nav = styled.nav`
         color: white;
       }
     }
-  }
 
-  #check, .checkbtnlabel {
-    display: none;
-  }
-
-  ${desktop} {
-    font-size: 16px;
-    ul {
+    ${desktop} {
       li {
         writing-mode: tb;
         transform: rotate( 180deg );
         margin-bottom: 64px;
       }
     }
-  }
-  ${mobile} {
-    height: 50px;
-    width: 100vw;
-    ul {
+    ${mobile} {
       display: flex;
       position: fixed;
       width: 50%;
@@ -82,47 +104,21 @@ const Nav = styled.nav`
         }
       }
     }
-    #check {
-      ~ .checkbtnlabel::after {
-        content: '三';
-      }
-    }
-    #check:checked {
-      & ~ ul{
-        left: 50%;
-      }
-      ~ .checkbtnlabel::after{
-        content: 'X';
-      }
-    }
-    .checkbtnlabel{
-      position: fixed;
-      z-index: 5;
-      display: block;
-      right: 15px;
-    }
-    /* .checkbtnlabel
-    a:hover,a.active{
-      background: none;
-      color: #0082e6;
-    } */
   }
-`
-const Menu = styled.ul`
-
 `
 const Content = styled.div`
   overflow-x: hidden;
+  transition: padding .5s ease-in-out;
   ${desktop} {
     height: 100vh;
     width: calc(100vw - 75px);
     margin-left: 75px;
-    padding: 5px;
+    padding: min(10%, 100px);
   }
   ${mobile} {
-    height: calc(100vh - 50px);
+    height: calc(120vh - 0px);
     width: 100vw;
-    padding-top: 50px;
+    padding: 50px 10px;
   }
 `
 
@@ -134,12 +130,12 @@ export default function Layout({ children }) {
         <label htmlFor="check" className="checkbtnlabel">
           {/* <i class="fas fa-bars"></i> */}
         </label>
-        <ul>
+        <Menu>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/about">About</Link></li>
           <li><Link to="/project-list">Projects</Link></li>
           <li><Link to="/contact">Contact</Link></li>
-        </ul>
+        </Menu>
       </Nav>
       <Content>
         {children}
