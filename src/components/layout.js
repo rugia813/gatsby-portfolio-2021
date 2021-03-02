@@ -94,8 +94,9 @@ const Menu = styled.ul`
         }
       }
       @keyframes fadeIn {
-      to {
-        bottom: 0%;
+        to {
+          bottom: 0%;
+        }
       }
     }
     ${mobile} {
@@ -103,7 +104,7 @@ const Menu = styled.ul`
       position: fixed;
       width: 50%;
       height: 50vh;
-      background: ${navColor};
+      background: black;
       top: 0;
       left: 100%;
       text-align: left;
@@ -120,7 +121,7 @@ const Menu = styled.ul`
         margin: 0;
         background-color: ${navColor};
 
-        a {
+        .bound, a {
           display: block;
           width: 100%;
           /* height: 100%; */
@@ -128,7 +129,6 @@ const Menu = styled.ul`
       }
     }
   }
- }
 `
 const Content = styled.div`
   overflow-x: hidden;
