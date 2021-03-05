@@ -4,6 +4,9 @@ import { graphql } from 'gatsby'
 
 const ProjectPanel = styled.div`
   margin: 0;
+  img {
+      max-width: 95vw;
+  }
 `
 const Project = ({title, content, slug, cover, tags}) => (
     <ProjectPanel>
