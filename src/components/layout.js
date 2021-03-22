@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { Link } from "gatsby"
 import React from "react"
+import Bg3d from "./3dBg/3dBg";
 
 const navColor = 'rgba(143,142,167,0.1)'
 const breakPoint = '858px'
@@ -162,6 +163,7 @@ export default function Layout({ children }) {
         </Menu>
       </Nav>
       <Content>
+        <Bg3d />
         {children}
       </Content>
     </div>
