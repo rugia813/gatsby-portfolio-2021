@@ -13,6 +13,7 @@ const CanvasContainer = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: -1;
 `
 
 export default function Bg3d({ children }) {
@@ -133,8 +134,10 @@ export default function Bg3d({ children }) {
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		container.current.appendChild(renderer.domElement);
 
-		stats = new Stats();
-		container.current.appendChild(stats.dom);
+		if (debug) {
+			stats = new Stats();
+			document.body.appendChild(stats.dom);
+		}
 
 		window.addEventListener('resize', onWindowResize);
 
@@ -200,7 +203,7 @@ export default function Bg3d({ children }) {
 		requestAnimationFrame(animate);
 
 		render();
-		stats.update();
+		stats && stats.update();
 
 	}
 
