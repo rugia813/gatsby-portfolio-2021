@@ -3,17 +3,17 @@ import * as THREE from 'three';
 import { easeOutQuad, easeInOutQuad, easeOutSine, easeInOutSine } from './utils/easing.utils.js';
 
 export default class TouchTexture {
-	constructor(parent) {
+	constructor(parent, debug = false) {
 		this.parent = parent;
 		this.size = 64;
 		this.maxAge = 120;
 		this.radius = 0.15;
 		this.trail = [];
 
-		this.initTexture();
+		this.initTexture(debug);
 	}
 
-	initTexture() {
+	initTexture(debug = false) {
 		this.canvas = document.createElement('canvas');
 		this.canvas.width = this.canvas.height = this.size;
 		this.ctx = this.canvas.getContext('2d');
@@ -25,11 +25,13 @@ export default class TouchTexture {
 		this.canvas.style.width = this.canvas.style.height = `${this.canvas.width}px`;
 
 		// DEBUG
-		document.body.appendChild(this.canvas)
-		this.canvas.style.position = 'fixed';
-		this.canvas.style.left = '100px';
-		this.canvas.style.top = '100px';
-		this.canvas.style.border = 'white solid thin';
+		if (debug) {
+			document.body.appendChild(this.canvas)
+			this.canvas.style.position = 'fixed';
+			this.canvas.style.left = '100px';
+			this.canvas.style.top = '100px';
+			this.canvas.style.border = 'white solid thin';
+		}
 	}
 
 	update(delta) {

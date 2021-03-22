@@ -22,6 +22,7 @@ export default function Bg3d({ children }) {
 	let geometry, material, mesh;
 	let touch, hitArea;
 	let control
+	let debug = false
 
 	const container = useRef(null)
 
@@ -154,7 +155,7 @@ export default function Bg3d({ children }) {
 
 	function initTouch() {
 		// create only once
-		if (!touch) touch = new TouchTexture(this);
+		if (!touch) touch = new TouchTexture(this, debug);
 		console.log('touch: ', touch);
 		mesh.material.uniforms.uTouch.value = touch.texture;
 	}
@@ -162,7 +163,7 @@ export default function Bg3d({ children }) {
 		const geometry = new THREE.PlaneGeometry(1160, 950, 1, 1);
 		console.log('renderer.domElement.width: ', renderer.domElement.width);
 		const material = new THREE.MeshBasicMaterial({ color: new THREE.Color('red'), wireframe: true, depthTest: false });
-		material.visible = true;
+		material.visible = debug;
 		hitArea = new THREE.Mesh(geometry, material);
 		scene.add(hitArea);
 	}
