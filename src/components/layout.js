@@ -26,6 +26,21 @@ const Nav = styled.nav`
   ${desktop} {
     font-size: 16px;
     border-right: white 1px solid;
+    animation: nav-slide-in .5s forwards;
+    animation-timing-function: ease;
+  }
+  @keyframes nav-slide-in {
+    0% {
+      height: 0%;
+      background-color: rgba(0,0,0,0);
+    }
+    75% {
+      height: 100%;
+      background-color: rgba(0,0,0,0);
+    }
+    100% {
+      background-color: ${navColor};
+    }
   }
   ${mobile} {
     height: 50px;
@@ -61,7 +76,6 @@ const Menu = styled.ul`
     li {
       flex: 1;
       margin: auto;
-      height: 75px;
       text-align: center;
 
       a {
@@ -74,11 +88,12 @@ const Menu = styled.ul`
         writing-mode: tb;
         transform: rotate( 180deg );
         margin-bottom: 64px;
+        width: 50%;
 
-        :nth-of-type(1) { --fadeInDelay: .6s; }
-        :nth-of-type(2) { --fadeInDelay: .4s; }
-        :nth-of-type(3) { --fadeInDelay: .2s; }
-        :nth-of-type(4) { --fadeInDelay: 0s; }
+        :nth-of-type(1) { --fadeInDelay: .5s; }
+        :nth-of-type(2) { --fadeInDelay: .7s; }
+        :nth-of-type(3) { --fadeInDelay: .9s; }
+        :nth-of-type(4) { --fadeInDelay: 1.1s; }
 
         .bound {
           overflow: hidden;
