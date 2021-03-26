@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React, { useCallback, useEffect, useRef } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import TouchTexture from './TouchTexture.js';
@@ -14,19 +14,20 @@ const CanvasContainer = styled.div`
 	top: 0;
 	left: 0;
 	z-index: -1;
+	/* border: red solid thick;
+	width: 100%; */
 `
 
-export default function Bg3d({ children }) {
-	let stats;
+let stats;
+let camera, scene, renderer;
+let geometry, material, mesh;
+let touch, hitArea;
+let control
+let debug = false
 
-	let camera, scene, renderer;
-	let geometry, material, mesh;
-	let touch, hitArea;
-	let control
-	let debug = false
+export default function Bg3d(props) {
 
 	const container = useRef(null)
-
 	useEffect(() => {
 		init()
 		animate()
@@ -34,6 +35,10 @@ export default function Bg3d({ children }) {
 			removeListeners()
 		}
 	}, [container])
+	useEffect(() => {
+		camera.position.z = props.scale
+		resize()
+	}, [props.scale])
 
 	function init() {
 
@@ -49,7 +54,9 @@ export default function Bg3d({ children }) {
 		}
 
 		camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 5000);
-		camera.position.z = 1400;
+		camera.position.z = props.scale;
+		camera.position.y = 100;
+		// camera.position.x = 80;
 
 		scene = new THREE.Scene();
 
@@ -139,7 +146,7 @@ export default function Bg3d({ children }) {
 			document.body.appendChild(stats.dom);
 		}
 
-		window.addEventListener('resize', onWindowResize);
+		window.addEventListener('resize', resize);
 
 		control = new Control(camera)
 		control.resize()
@@ -188,7 +195,7 @@ export default function Bg3d({ children }) {
 		if (touch) touch.addTouch(uv);
 	}
 
-	function onWindowResize() {
+	function resize() {
 		control.resize()
 
 		camera.aspect = window.innerWidth / window.innerHeight;

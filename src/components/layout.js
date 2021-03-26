@@ -1,10 +1,11 @@
 import styled from "@emotion/styled"
 import { Link } from "gatsby"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Bg3d from "./3dBg/3dBg";
 
 const navColor = 'rgba(143,142,167,0.1)'
-const breakPoint = '858px'
+const _breakPoint = 858
+const breakPoint = `${_breakPoint}px`
 const desktop = `@media (min-width: ${breakPoint})`
 const mobile = `@media (max-width: ${breakPoint})`
 
@@ -163,6 +164,22 @@ const Content = styled.div`
 `
 
 export default function Layout({ children }) {
+  const [scale, setScale] = useState(1400)
+
+  useEffect(() => {
+    rescale3dModel()
+    window.addEventListener('resize', rescale3dModel)
+    return () => {
+      window.removeEventListener('resize', rescale3dModel)
+    }
+  }, [])
+
+  function rescale3dModel() {
+    const bp = _breakPoint
+    const width = Math.min(window.innerWidth, bp)
+    setScale(1400 + (bp - width) * 1.0)
+  }
+
   return (
     <div>
       <Nav>
@@ -178,7 +195,7 @@ export default function Layout({ children }) {
         </Menu>
       </Nav>
       <Content>
-        <Bg3d />
+        <Bg3d scale={scale} />
         {children}
       </Content>
     </div>
