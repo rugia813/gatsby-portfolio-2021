@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import styled from "@emotion/styled"
 import { graphql } from 'gatsby'
-import { debounce } from "../utils"
 
 const ProjectPanel = styled.div`
   margin: 0;
@@ -10,15 +9,6 @@ const ProjectPanel = styled.div`
     width: 42vw;
   }
 `
-const Project = ({title, content, slug, cover, tags}) => (
-    <ProjectPanel>
-        <div>{slug}</div>
-        <div>{title}</div>
-        <div>{content}</div>
-        <div>{tags}</div>
-        <div><img src={cover} alt={title + ' image'} /></div>
-    </ProjectPanel>
-)
 
 export default function ProjectList({ data }) {
     const { allMarkdownRemark } = data
@@ -32,16 +22,18 @@ export default function ProjectList({ data }) {
         tags: node.frontmatter.tags,
     }))
 
-    useEffect(() => {
-        document.body.addEventListener('wheel', onWheel)
-        return () => {
-            document.body.removeEventListener('wheel', onWheel)
-        }
-    }, [])
+    const [locked, setLocked] = useState(false)
     function onWheel(e) {
+        if (locked) return false
+        setLocked(true)
+        setTimeout(() => {
+            setLocked(false)
+        }, 800);
+
+        const deltaY = e.deltaY
         setIdx(prev => {
             let res
-            if (e.deltaY > 0) {
+            if (deltaY > 0) {
                 // down
                 res = (prev === nodes.length - 1) ? 0 : prev + 1
             } else {
@@ -66,7 +58,7 @@ export default function ProjectList({ data }) {
     }, [idx])
 
     return  (
-        <ProjectPanel>
+        <ProjectPanel onWheel={onWheel}>
             <h1>{cur.title} {idx}</h1>
             <img src={cur.cover} alt={cur.title + ' image'} />
         </ProjectPanel>
