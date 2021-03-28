@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import styled from "@emotion/styled"
 import { graphql } from 'gatsby'
-import { mobile, _breakPoint, breakPoint, desktop } from "../styles/consts";
+import { mobile, desktop } from "../styles/consts";
 
 const ProjectPanel = styled.div`
     display: grid;

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef } from "react"
 import * as THREE from 'three';
 import * as Stats from 'stats.js';
 import TouchTexture from './TouchTexture.js';
@@ -7,7 +7,6 @@ import Control from "./InteractiveControls.js";
 import vert from "./shaders/vert.js";
 import frag from "./shaders/frag.js";
 import circle from "/static/imgs/circle.png";
-import { css } from "@emotion/react";
 
 const CanvasContainer = styled.div`
 	position: fixed;

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
-import { mobile, _breakPoint, breakPoint, desktop } from "../styles/consts";
+import { mobile, _breakPoint, desktop } from "../styles/consts";
 import Bg3d from "./3dBg/3dBg";
 
 const navColor = 'rgba(143,142,167,0.1)'

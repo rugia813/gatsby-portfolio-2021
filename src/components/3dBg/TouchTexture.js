@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-import { easeOutQuad, easeInOutQuad, easeOutSine, easeInOutSine } from './utils/easing.utils.js';
+import { easeOutSine } from './utils/easing.utils.js';
 
 export default class TouchTexture {
 	constructor(parent, debug = false) {
