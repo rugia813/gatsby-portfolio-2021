@@ -98,7 +98,7 @@ const Menu = styled.ul`
           a {
             position: relative;
             bottom: 100%;
-            animation: fadeIn 1.2s forwards;
+            animation: nav-item-fade-in 1.2s forwards;
             animation-delay: var(--fadeInDelay);
             animation-timing-function: ease;
           }
@@ -107,7 +107,7 @@ const Menu = styled.ul`
           } */
         }
       }
-      @keyframes fadeIn {
+      @keyframes nav-item-fade-in {
         to {
           bottom: 0%;
         }
@@ -154,7 +154,7 @@ const Content = styled.div`
     padding: min(10%, 100px);
   }
   ${mobile} {
-    height: calc(120vh - 0px);
+    height: calc(100vh);
     width: 100vw;
     padding: 50px 10px;
   }

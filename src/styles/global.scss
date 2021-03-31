@@ -19,21 +19,14 @@
 
 body {
   @include gradient;
-  overflow: hidden;
-
-  // &::before {
-  //   content: ' ';
-  //   width: 100%;
-  //   height: 100%;
-  //   position: fixed;
-  //   top: 0;
-  //   @include gradient(#102650);
-  //   filter: brightness(0.8);
-  //   animation: flickering 2s linear infinite alternate;
-  // }
 }
-// @keyframes flickering {
-//   to {
-//     filter: brightness(1);
-//   }
-// }
+
+@keyframes fadeIn {
+  from {
+    color: rgba(0, 0, 0, 0);
+  }
+
+  to {
+    color: white;
+  }
+}

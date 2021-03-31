@@ -5,7 +5,7 @@ export const BaseButton = styled.div`
 	border: white 1px solid;
 	background-color: ${blurColor};
   backdrop-filter: blur(5px);
-	padding: 4% 10%;
+	padding: 10px;
 	min-width: 120px;
 	min-height: 32px;
 	color: white;
