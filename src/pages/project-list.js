@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import styled from "@emotion/styled"
 import { graphql } from 'gatsby'
 import { mobile, desktop } from "../styles/consts";
+import { BaseButton } from "../components/baseButton";
 
 const ProjectPanel = styled.div`
     display: grid;
@@ -11,23 +12,48 @@ const ProjectPanel = styled.div`
     height: 100%;
     color: white;
 
-    .project-info {
-
-    }
-
-    img {
-        width: 100%;
-        ${mobile} {
-            place-self: baseline;
-        }
-    }
-
     ${desktop} {
+        grid-template-rows: 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr;
+        column-gap: 2%;
     }
 
     ${mobile} {
         grid-template-rows: 4fr 8fr;
+    }
+
+    .project-info {
+        max-width: 500px;
+        grid-row: 2;
+        display: grid;
+        grid-template-rows: 1fr 12px 2fr 1fr;
+        align-self: stretch;
+        align-items: center;
+        justify-items: start;
+
+        .pageNum {
+
+        }
+        .detailBtn {
+            justify-self: center;
+        }
+        .pageNav {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-items: center;
+            cursor: pointer;
+        }
+    }
+
+    .cover {
+        grid-row: 2;
+        justify-self: baseline;
+        ${mobile} {
+            place-self: baseline;
+        }
+        img {
+            width: 33vw;
+        }
     }
 `
 
@@ -75,13 +101,16 @@ export default function ProjectList({ data }) {
         <ProjectPanel onWheel={changeCur}>
             <div className="project-info">
                 <h1>{cur.title}</h1>
-                {idx + 1} / {total}
-                <div>
+                <div className="pageNum">{idx + 1} / {total}</div>
+                <BaseButton className="detailBtn">Detail</BaseButton>
+                <div className="pageNav">
                     <span onClick={() => goUp(idx)}>Previous</span>
                     <span onClick={() => goDown(idx)}>Next</span>
                 </div>
             </div>
-            <img src={cur.cover} alt={cur.title + ' image'} />
+            <div className="cover">
+                <img src={cur.cover} alt={cur.title + ' image'} />
+            </div>
         </ProjectPanel>
     )
 }
