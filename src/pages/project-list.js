@@ -19,17 +19,25 @@ const ProjectPanel = styled.div`
     }
 
     ${mobile} {
-        grid-template-rows: 4fr 8fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
 
     .project-info {
-        max-width: 500px;
-        grid-row: 2;
         display: grid;
-        grid-template-rows: 1fr 12px 2fr 1fr;
         align-self: stretch;
         align-items: center;
         justify-items: start;
+        grid-template-rows: 1fr 12px 2fr 1fr;
+
+        ${desktop} {
+            max-width: 500px;
+            grid-row: 2;
+        }
+
+        ${mobile} {
+            height: 35vh;
+        }
 
         .pageNum {
 
@@ -42,17 +50,27 @@ const ProjectPanel = styled.div`
             grid-template-columns: 1fr 1fr;
             justify-items: center;
             cursor: pointer;
+            ${mobile} {
+                justify-self: end;
+            }
         }
     }
 
     .cover {
-        grid-row: 2;
-        justify-self: baseline;
-        ${mobile} {
-            place-self: baseline;
+        ${desktop} {
+            grid-row: 2;
+            justify-self: baseline;
+            img {
+                width: 33vw;
+            }
         }
-        img {
-            width: 33vw;
+        ${mobile} {
+            grid-row: 1;
+            place-self: baseline;
+            margin: auto;
+            img {
+                max-width: 75vw;
+            }
         }
     }
 `
