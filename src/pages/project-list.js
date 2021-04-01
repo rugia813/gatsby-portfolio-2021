@@ -5,8 +5,9 @@ import { mobile, desktop } from "../styles/consts";
 import { BaseButton } from "../components/baseButton";
 
 const ProjectPanel = styled.div`
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin: 0;
     width: 100%;
     height: 100%;
@@ -14,14 +15,11 @@ const ProjectPanel = styled.div`
     transition: 1s;
 
     ${desktop} {
-        grid-template-rows: 1fr auto;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 2%;
+
     }
 
     ${mobile} {
-        grid-template-rows: 1fr 1fr;
-        grid-template-columns: 1fr;
+
     }
 
     .project-info {
@@ -33,9 +31,7 @@ const ProjectPanel = styled.div`
 
         ${desktop} {
             max-width: 500px;
-            grid-row: 1;
             height: min-content;
-            align-self: center;
         }
 
         ${mobile} {
@@ -81,15 +77,25 @@ const ProjectPanel = styled.div`
 
 `
 
+const ProjectSelector = styled.div `
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    transition: 1s ease-in-out;
+`
+
 const DetailPanel = styled.div`
     height: 0;
     overflow: hidden;
-    grid-row: 2;
-    grid-column: 1/3;
-    transition: 1s;
+    transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+    display: grid;
+    place-content: center;
+    filter: opacity(0);
 
     &.show {
-        height: 500px;
+        height: 100%;
+        filter: opacity(100);
     }
 
     img {
@@ -146,19 +152,21 @@ export default function ProjectList({ data }) {
 
     return  (
         <ProjectPanel onWheel={changeCur}>
-            <div className="project-info">
-                <h1>{cur.title}</h1>
-                <div className="pageNum">{idx + 1} / {total}</div>
-                <BaseButton className="detailBtn" onClick={openDetail}>Detail</BaseButton>
-                <div className="pageNav">
-                    <span onClick={() => goUp(idx)}>Previous</span>
-                    <span onClick={() => goDown(idx)}>Next</span>
+            <ProjectSelector>
+                <div className="project-info">
+                    <h1>{cur.title}</h1>
+                    <div className="pageNum">{idx + 1} / {total}</div>
+                    <BaseButton className="detailBtn" onClick={openDetail}>Detail</BaseButton>
+                    <div className="pageNav">
+                        <span onClick={() => goUp(idx)}>Previous</span>
+                        <span onClick={() => goDown(idx)}>Next</span>
+                    </div>
                 </div>
-            </div>
 
-            <div className="cover" ref={coverRef}>
-                <img src={cur.cover} alt={cur.title + ' image'} />
-            </div>
+                <div className="cover" ref={coverRef}>
+                    <img src={cur.cover} alt={cur.title + ' image'} />
+                </div>
+            </ProjectSelector>
 
             <DetailPanel className={inDetail ? 'show' : ''}>
                 <div dangerouslySetInnerHTML={{ __html: cur.content + '' }} />
