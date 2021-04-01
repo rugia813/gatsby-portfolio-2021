@@ -4,17 +4,6 @@ import { graphql } from 'gatsby'
 import { mobile, desktop } from "../styles/consts";
 import { BaseButton } from "../components/baseButton";
 
-const moveCoverFrom = `
-    position: fixed;
-    top: var(--top);
-    left: var(--left);
-`
-const moveCoverTo = `
-    position: fixed;
-    top: 5px;
-    left: 30%;
-`
-
 const ProjectPanel = styled.div`
     display: grid;
     place-items: center;
@@ -22,9 +11,10 @@ const ProjectPanel = styled.div`
     width: 100%;
     height: 100%;
     color: white;
+    transition: 1s;
 
     ${desktop} {
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-rows: 1fr auto;
         grid-template-columns: 1fr 1fr;
         column-gap: 2%;
     }
@@ -36,19 +26,16 @@ const ProjectPanel = styled.div`
 
     .project-info {
         display: grid;
-        align-self: stretch;
         align-items: center;
         justify-items: start;
         grid-template-rows: 1fr 12px 2fr 1fr;
-        transition: filter 1.5s;
-
-        &.hidden {
-            filter: opacity(0);
-        }
+        transition: 1s;
 
         ${desktop} {
             max-width: 500px;
-            grid-row: 2;
+            grid-row: 1;
+            height: min-content;
+            align-self: center;
         }
 
         ${mobile} {
@@ -73,26 +60,16 @@ const ProjectPanel = styled.div`
     }
 
     .cover {
-        --top: 0;
-        --left: 0;
-
+        transition: 1s;
         img {
             width: 100%;
         }
 
         ${desktop} {
-            grid-row: 2;
+            grid-row: 1;
             justify-self: baseline;
             width: 33vw;
-            transition: width 1s ease-in-out;
-
-            &.detail {
-                animation: moveCover 1s forwards ease-in-out;
-                width: 43vw;
-            }
-            &.moveBack {
-                animation: moveCover2 1s ease-in-out;
-            }
+            transition: 1s ease-in-out;
         }
         ${mobile} {
             grid-row: 1;
@@ -101,26 +78,19 @@ const ProjectPanel = styled.div`
             max-width: 75vw;
         }
     }
-    @keyframes moveCover {
-        from {
-            ${moveCoverFrom}
-        }
-        to {
-            ${moveCoverTo}
-        }
-    }
-    @keyframes moveCover2 {
-        from {
-            ${moveCoverTo}
-        }
-        to {
-            ${moveCoverFrom}
-        }
-    }
+
 `
 
 const DetailPanel = styled.div`
+    height: 0;
+    overflow: hidden;
+    grid-row: 2;
+    grid-column: 1/3;
+    transition: 1s;
 
+    &.show {
+        height: 500px;
+    }
 
     img {
         max-width: 33vw;
@@ -142,18 +112,7 @@ export default function ProjectList({ data }) {
 
     const coverRef = useRef(null)
     function openDetail(e) {
-        const cover = coverRef.current
-        if (cover.classList.contains('detail')) {
-            cover.classList.remove('detail')
-            cover.classList.add('moveBack')
-            setInDetail(false)
-        } else {
-            cover.style.setProperty('--top', cover.offsetTop + 'px')
-            cover.style.setProperty('--left', cover.offsetLeft + 'px')
-            cover.classList.add('detail')
-            cover.classList.remove('moveBack')
-            setInDetail(true)
-        }
+        setInDetail(!inDetail)
     }
 
     const [inDetail, setInDetail] = useState(false)
@@ -187,7 +146,7 @@ export default function ProjectList({ data }) {
 
     return  (
         <ProjectPanel onWheel={changeCur}>
-            <div className={'project-info ' + (inDetail && 'hidden')}>
+            <div className="project-info">
                 <h1>{cur.title}</h1>
                 <div className="pageNum">{idx + 1} / {total}</div>
                 <BaseButton className="detailBtn" onClick={openDetail}>Detail</BaseButton>
@@ -196,13 +155,14 @@ export default function ProjectList({ data }) {
                     <span onClick={() => goDown(idx)}>Next</span>
                 </div>
             </div>
+
             <div className="cover" ref={coverRef}>
                 <img src={cur.cover} alt={cur.title + ' image'} />
             </div>
-            {inDetail && <DetailPanel>
-                <h1>{cur.title}</h1>
-                <div dangerouslySetInnerHTML={{__html: cur.content + ''}} />
-            </DetailPanel>}
+
+            <DetailPanel className={inDetail ? 'show' : ''}>
+                <div dangerouslySetInnerHTML={{ __html: cur.content + '' }} />
+            </DetailPanel>
         </ProjectPanel>
     )
 }
