@@ -38,6 +38,14 @@ const ProjectPanel = styled.div`
             height: 35vh;
         }
 
+        div {
+            transition: filter .75s;
+        }
+
+        .hidden {
+            filter: opacity(0);
+        }
+
         .pageNum {
 
         }
@@ -51,6 +59,9 @@ const ProjectPanel = styled.div`
             cursor: pointer;
             ${mobile} {
                 justify-self: end;
+            }
+            &.hidden {
+                cursor: default;
             }
         }
     }
@@ -125,7 +136,7 @@ export default function ProjectList({ data }) {
 
     const [locked, setLocked] = useState(false)
     function changeCur(e) {
-        if (locked) return false
+        if (locked || inDetail) return false
         setLocked(true)
         setTimeout(() => {
             setLocked(false)
@@ -155,11 +166,11 @@ export default function ProjectList({ data }) {
             <ProjectSelector>
                 <div className="project-info">
                     <h1>{cur.title}</h1>
-                    <div className="pageNum">{idx + 1} / {total}</div>
+                    <div className={`pageNum ${inDetail ? 'hidden' : ''}`}>{idx + 1} / {total}</div>
                     <BaseButton className="detailBtn" onClick={openDetail}>Detail</BaseButton>
-                    <div className="pageNav">
-                        <span onClick={() => goUp(idx)}>Previous</span>
-                        <span onClick={() => goDown(idx)}>Next</span>
+                    <div className={`pageNav ${inDetail ? 'hidden' : ''}`}>
+                        <span onClick={() => !inDetail && goUp(idx)}>Previous</span>
+                        <span onClick={() => !inDetail && goDown(idx)}>Next</span>
                     </div>
                 </div>
 
