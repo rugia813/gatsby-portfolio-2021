@@ -60,7 +60,7 @@ const ProjectPanel = styled.div`
             justify-items: center;
             cursor: pointer;
             text-decoration: underline;
-            
+
             ${mobile} {
                 justify-self: end;
             }
@@ -161,16 +161,18 @@ export default function ProjectList({ data }) {
         }, 800);
 
         if (e.deltaY > 0) {
-            goDown()
+            // down
+            setIdx(_idx => (_idx === nodes.length - 1) ? 0 : _idx + 1)
         } else {
-            goUp()
+            // up
+            setIdx(_idx => (_idx === 0) ? nodes.length - 1 : _idx - 1)
         }
     }
     function goUp() {
-        setIdx(_idx => (_idx === 0) ? nodes.length - 1 : _idx - 1)
+        changeCur({deltaY: 0})
     }
     function goDown() {
-        setIdx(_idx => (_idx === nodes.length - 1) ? 0 : _idx + 1)
+        changeCur({deltaY: 1})
     }
 
     const [cur, setCur] = useState({})
