@@ -18,6 +18,10 @@ export const BaseButton = styled.div`
 		border-color: rgba(160, 160, 255);
 	}
 
+	:active {
+		background-color: rgba(128, 128, 200, .5);
+	}
+
 	::after {
 		content: '';
 		border: 1px solid;

@@ -12,7 +12,6 @@ const ProjectPanel = styled.div`
     width: 100%;
     height: 100%;
     color: white;
-    transition: 1s;
 
     ${desktop} {
 
@@ -27,7 +26,7 @@ const ProjectPanel = styled.div`
         align-items: center;
         justify-items: start;
         grid-template-rows: 1fr 12px 2fr 1fr;
-        transition: 1s;
+        transition: 1s ease-in-out;
 
         ${desktop} {
             max-width: 500px;
@@ -35,11 +34,12 @@ const ProjectPanel = styled.div`
         }
 
         ${mobile} {
-            height: 35vh;
+            height: 100%;
+            width: 100%;
         }
 
         div {
-            transition: filter .75s;
+            transition: filter 1s ease-in-out;
         }
 
         .hidden {
@@ -49,14 +49,18 @@ const ProjectPanel = styled.div`
         .pageNum {
 
         }
+
         .detailBtn {
             justify-self: center;
         }
+
         .pageNav {
             display: grid;
             grid-template-columns: 1fr 1fr;
             justify-items: center;
             cursor: pointer;
+            text-decoration: underline;
+            
             ${mobile} {
                 justify-self: end;
             }
@@ -67,7 +71,10 @@ const ProjectPanel = styled.div`
     }
 
     .cover {
-        transition: 1s;
+        transition: 1s ease-in-out;
+        overflow: hidden;
+        height: 100%;
+
         img {
             width: 100%;
         }
@@ -76,13 +83,11 @@ const ProjectPanel = styled.div`
             grid-row: 1;
             justify-self: baseline;
             width: 33vw;
-            transition: 1s ease-in-out;
         }
         ${mobile} {
-            grid-row: 1;
-            place-self: baseline;
-            margin: auto;
-            max-width: 75vw;
+            &.hidden {
+                height: 0px;
+            }
         }
     }
 
@@ -90,16 +95,28 @@ const ProjectPanel = styled.div`
 
 const ProjectSelector = styled.div `
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
     align-items: center;
     transition: 1s ease-in-out;
+
+    ${desktop} {
+        flex-direction: row;
+    }
+
+    ${mobile} {
+        height: 98%;
+        flex-direction: column-reverse;
+
+        &.short {
+            height: 25%;
+        }
+    }
 `
 
 const DetailPanel = styled.div`
     height: 0;
     overflow: hidden;
-    transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: 1s ease-in-out;
     display: grid;
     place-content: center;
     filter: opacity(0);
@@ -107,6 +124,7 @@ const DetailPanel = styled.div`
     &.show {
         height: 100%;
         filter: opacity(100);
+        overflow-y: auto;
     }
 
     img {
@@ -163,18 +181,20 @@ export default function ProjectList({ data }) {
 
     return  (
         <ProjectPanel onWheel={changeCur}>
-            <ProjectSelector>
+            <ProjectSelector className={inDetail ? 'short' : ''}>
                 <div className="project-info">
                     <h1>{cur.title}</h1>
                     <div className={`pageNum ${inDetail ? 'hidden' : ''}`}>{idx + 1} / {total}</div>
-                    <BaseButton className="detailBtn" onClick={openDetail}>Detail</BaseButton>
+                    <BaseButton className="detailBtn" onClick={openDetail}>
+                        {inDetail ? 'Back' : 'Detail'}
+                    </BaseButton>
                     <div className={`pageNav ${inDetail ? 'hidden' : ''}`}>
                         <span onClick={() => !inDetail && goUp(idx)}>Previous</span>
                         <span onClick={() => !inDetail && goDown(idx)}>Next</span>
                     </div>
                 </div>
 
-                <div className="cover" ref={coverRef}>
+                <div className={`cover ${inDetail ? 'hidden' : ''}`} ref={coverRef}>
                     <img src={cur.cover} alt={cur.title + ' image'} />
                 </div>
             </ProjectSelector>

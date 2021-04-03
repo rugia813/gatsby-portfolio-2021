@@ -16,6 +16,7 @@ const Nav = styled.nav`
   color: white;
   display: flex;
   align-items: center;
+  z-index: 100;
 
   #check, .checkbtnlabel {
     display: none;
