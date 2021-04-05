@@ -24,12 +24,13 @@ let touch, hitArea;
 let control
 let debug = false
 let timeOrigin, lastframeTime = 0
+let active = true
 
 export default function Bg3d(props) {
-
 	const container = useRef(null)
 	useEffect(() => {
 		timeOrigin = performance.now()
+		lastframeTime = 0
 		init()
 		animate()
 		return () => {
@@ -42,6 +43,7 @@ export default function Bg3d(props) {
 	}, [props.scale])
 
 	function init() {
+		active = true
 
 		renderer = new THREE.WebGLRenderer({ alpha: true });
 
@@ -127,6 +129,7 @@ export default function Bg3d(props) {
 				"uTouch": { value: null },
 				"toggle": { value: false },
 				"timeOffset": { value: 0 },
+				"rotation": { value: 0.02 },
 			},
 			vertexShader: vert,
 			fragmentShader: frag,
@@ -154,7 +157,7 @@ export default function Bg3d(props) {
 		initTouch()
 		initHitArea()
 		addListeners()
-
+		
 		return true;
 
 	}
@@ -172,7 +175,6 @@ export default function Bg3d(props) {
 	}
 	function initHitArea() {
 		const geometry = new THREE.PlaneGeometry(1160, 950, 1, 1);
-		console.log('renderer.domElement.width: ', renderer.domElement.width);
 		const material = new THREE.MeshBasicMaterial({ color: new THREE.Color('red'), wireframe: true, depthTest: false });
 		material.visible = debug;
 		hitArea = new THREE.Mesh(geometry, material);
@@ -190,10 +192,18 @@ export default function Bg3d(props) {
 		const index = control.objects.findIndex(obj => obj === hitArea);
 		control.objects.splice(index, 1);
 		control.disable();
+		active = false
 	}
 	function onInteractiveMove(e) {
 		const uv = e.intersectionData.uv;
 		if (touch) touch.addTouch(uv);
+		window.a = touch
+		const rot = mesh.material.uniforms.rotation.value
+		const nRot = (uv.x - 0.5) * .05
+		const fRot = (nRot > rot) 
+		? (nRot > rot + 0.002) ? rot + 0.001 : nRot
+		: (nRot < rot - 0.002) ? rot - 0.001 : nRot
+		mesh.material.uniforms.rotation.value = fRot;
 	}
 
 	function resize() {
@@ -207,7 +217,7 @@ export default function Bg3d(props) {
 	}
 
 	function animate() {
-
+		if (!active) return false
 		requestAnimationFrame(animate);
 
 		render();
@@ -217,7 +227,8 @@ export default function Bg3d(props) {
 
 	function render() {
 		const time = (performance.now() - timeOrigin);
-		material.uniforms["time"].value = time * 0.0005;
+		const adjustedTime = time * 0.0005
+		material.uniforms["time"].value = adjustedTime;
 		
 		// lock to 60 fps
 		if (time - lastframeTime > 12) {
@@ -225,8 +236,8 @@ export default function Bg3d(props) {
 			lastframeTime = time
 		}
 
-		// mesh.rotation.x = time * 0.2;
-		// mesh.rotation.y = time * 0.4;
+		// mesh.rotation.x = adjustedTime * 0.2;
+		// mesh.rotation.y = adjustedTime * 0.4;
 
 		renderer.render(scene, camera);
 
