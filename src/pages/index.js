@@ -1,6 +1,8 @@
-import * as React from "react"
+import React, { useEffect, useState } from "react"
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import Bg3d from "../components/3dBg/3dBg";
+import { _breakPoint } from "../styles/consts";
 
 const Intro = styled.div`
   display: block;
@@ -68,12 +70,30 @@ const textGrow = css`
 
 const IndexPage = () => {
   const name = 'Jay Li'.split('').map((e) => <span css={textGrow} key={e}>{e}</span>)
+
+  const [scale, setScale] = useState(1400)
+
+  useEffect(() => {
+    rescale3dModel()
+    window.addEventListener('resize', rescale3dModel)
+    return () => {
+      window.removeEventListener('resize', rescale3dModel)
+    }
+  }, [])
+
+  function rescale3dModel() {
+    const bp = _breakPoint
+    const width = Math.min(window.innerWidth, bp)
+    setScale(1400 + (bp - width) * 1.0)
+  }
+
   return (
     <main>
       <Intro>
         <div className="intro-author"> {name} </div>
         <div className="intro-occupation">Web Developer</div>
       </Intro>
+      <Bg3d scale={scale} />
     </main>
   )
 }

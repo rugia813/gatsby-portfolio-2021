@@ -45,7 +45,7 @@ void main() {
 	vec3 from = (toggle == true) ? translate : ico;
 	vec3 to = (toggle == true) ? ico : translate;
 	vec3 step = (to - from);
-	vec4 cur = vec4( from + (step * exponentialInOut(clamp((time - timeOffset) * 1., 0.0, 1.0))), 1.0 );
+	vec4 cur = vec4( from + (step * exponentialInOut(clamp((time - timeOffset) * .6, 0.0, 1.0))), 1.0 );
 	vec2 p = rotate(cur.xz, 0.0); // 1 deg = 0.017472222222222222
 	cur.xz = p.xy;
 	vec4 mvPosition = modelViewMatrix * cur;
@@ -53,6 +53,7 @@ void main() {
 
 	// float scale = 10.0 - ((f - 0.5) * 120.0);
 	float scale = 4.0 + noise(time * 3. + angle * 2.) * 6.;
+	scale = time > 1.4 ? scale : scale * exponentialInOut(time / 1.4);
 
 	mvPosition.xyz += vec3(position.x + sin(translate.y + time) * 1.8, position.y + 1. - 6. * cos(angle) * f, position.z) * scale;
 	float dis = distance(vec4(0,0,0,0), mvPosition);

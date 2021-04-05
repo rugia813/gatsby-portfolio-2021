@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
 import { mobile, _breakPoint, desktop, blurColor } from "../styles/consts";
-import Bg3d from "./3dBg/3dBg";
+// import Bg3d from "./3dBg/3dBg";
 
 const navColor = blurColor
 
@@ -162,21 +162,6 @@ const Content = styled.div`
 `
 
 export default function Layout({ children }) {
-  const [scale, setScale] = useState(1400)
-
-  useEffect(() => {
-    rescale3dModel()
-    window.addEventListener('resize', rescale3dModel)
-    return () => {
-      window.removeEventListener('resize', rescale3dModel)
-    }
-  }, [])
-
-  function rescale3dModel() {
-    const bp = _breakPoint
-    const width = Math.min(window.innerWidth, bp)
-    setScale(1400 + (bp - width) * 1.0)
-  }
 
   return (
     <div>
@@ -193,7 +178,7 @@ export default function Layout({ children }) {
         </Menu>
       </Nav>
       <Content>
-        <Bg3d scale={scale} />
+        {/* <Bg3d scale={scale} /> */}
         {children}
       </Content>
     </div>

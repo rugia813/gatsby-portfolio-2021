@@ -23,11 +23,13 @@ let geometry, material, mesh;
 let touch, hitArea;
 let control
 let debug = false
+let timeOrigin
 
 export default function Bg3d(props) {
 
 	const container = useRef(null)
 	useEffect(() => {
+		timeOrigin = performance.now()
 		init()
 		animate()
 		return () => {
@@ -214,7 +216,7 @@ export default function Bg3d(props) {
 	}
 
 	function render() {
-		const time = performance.now() * 0.0005;
+		const time = (performance.now() - timeOrigin) * 0.0005;
 		window.t = time
 		material.uniforms["time"].value = time;
 
