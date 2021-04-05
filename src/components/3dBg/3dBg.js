@@ -23,7 +23,7 @@ let geometry, material, mesh;
 let touch, hitArea;
 let control
 let debug = false
-let timeOrigin
+let timeOrigin, lastframeTime = 0
 
 export default function Bg3d(props) {
 
@@ -216,12 +216,14 @@ export default function Bg3d(props) {
 	}
 
 	function render() {
-		const time = (performance.now() - timeOrigin) * 0.0005;
-		window.t = time
-		material.uniforms["time"].value = time;
-
-		touch && touch.update(time)
-
+		const time = (performance.now() - timeOrigin);
+		material.uniforms["time"].value = time * 0.0005;
+		
+		// lock to 60 fps
+		if (time - lastframeTime > 12) {
+			touch && touch.update(time)
+			lastframeTime = time
+		}
 
 		// mesh.rotation.x = time * 0.2;
 		// mesh.rotation.y = time * 0.4;
