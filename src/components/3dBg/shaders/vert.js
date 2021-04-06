@@ -6,7 +6,7 @@ uniform float time;
 uniform sampler2D uTouch;
 uniform bool toggle;
 uniform float timeOffset;
-uniform float rotation;
+uniform vec2 rotation;
 
 attribute vec3 position;
 attribute vec3 ico;
@@ -47,8 +47,10 @@ void main() {
 	vec3 to = (toggle == true) ? ico : translate;
 	vec3 step = (to - from);
 	vec4 cur = vec4( from + (step * exponentialInOut(clamp((time - timeOffset) * .6, 0.0, 1.0))), 1.0 );
-	vec2 p = rotate(cur.xz, rotation); // 1 deg = 0.017472222222222222
-	cur.xz = p.xy;
+	vec2 rotHor = rotate(cur.xz, rotation.x); // 1 deg = 0.017472222222222222
+	vec2 rotVer = rotate(cur.yz, rotation.y);
+	cur.xz = rotHor.xy;
+	cur.y = rotVer.x;
 	vec4 mvPosition = modelViewMatrix * cur;
 	float f = texture2D(uTouch, vec2(map(p.x,0.0,1.0, 0.5,0.8),map(cur.y,0.0,1.0, 0.5,1.0))).r;
 

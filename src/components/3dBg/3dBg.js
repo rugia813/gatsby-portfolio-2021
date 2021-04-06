@@ -129,7 +129,7 @@ export default function Bg3d(props) {
 				"uTouch": { value: null },
 				"toggle": { value: false },
 				"timeOffset": { value: 0 },
-				"rotation": { value: 0.02 },
+				"rotation": { value: {x: 0.02, y: 0.02} },
 			},
 			vertexShader: vert,
 			fragmentShader: frag,
@@ -198,12 +198,19 @@ export default function Bg3d(props) {
 		const uv = e.intersectionData.uv;
 		if (touch) touch.addTouch(uv);
 		window.a = touch
-		const rot = mesh.material.uniforms.rotation.value
-		const nRot = (uv.x - 0.5) * .05
+		const rot = {
+			x: getRotVal(uv.x, mesh.material.uniforms.rotation.value.x),
+			y: getRotVal(uv.y, mesh.material.uniforms.rotation.value.y),
+		}
+		mesh.material.uniforms.rotation.value = rot;
+	}
+	function getRotVal(f, oldv) {
+		const rot = oldv
+		const nRot = (f - 0.5) * .05
 		const fRot = (nRot > rot)
-		? (nRot > rot + 0.002) ? rot + 0.001 : nRot
-		: (nRot < rot - 0.002) ? rot - 0.001 : nRot
-		mesh.material.uniforms.rotation.value = fRot;
+			? (nRot > rot + 0.002) ? rot + 0.001 : nRot
+			: (nRot < rot - 0.002) ? rot - 0.001 : nRot
+		return fRot
 	}
 
 	function resize() {
