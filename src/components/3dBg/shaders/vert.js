@@ -57,7 +57,7 @@ void main() {
 	scale = time > 1.4 ? scale : scale * exponentialInOut(time / 1.4);
 
 	mvPosition.xyz += vec3(position.x + sin(translate.y + time) * 1.8, position.y + 1. - 6. * cos(angle) * f, position.z) * scale;
-	float dis = distance(vec4(0,0,0,0), mvPosition);
+	// float dis = distance(vec4(0,0,0,0), mvPosition);
 	float d = noise(sin(angle)) * f + .75;
 	float z = noise(cos(angle)) * f + .75;
 	vec4 displaced = vec4(d, z, 1.0, 1.0);

@@ -143,7 +143,7 @@ export default function Bg3d(props) {
 
 		renderer.setPixelRatio(window.devicePixelRatio);
 		renderer.setSize(window.innerWidth, window.innerHeight);
-		container.current.appendChild(renderer.domElement);
+		container.current.replaceChildren(renderer.domElement);
 
 		if (debug) {
 			stats = new Stats();
@@ -157,7 +157,7 @@ export default function Bg3d(props) {
 		initTouch()
 		initHitArea()
 		addListeners()
-		
+
 		return true;
 
 	}
@@ -200,7 +200,7 @@ export default function Bg3d(props) {
 		window.a = touch
 		const rot = mesh.material.uniforms.rotation.value
 		const nRot = (uv.x - 0.5) * .05
-		const fRot = (nRot > rot) 
+		const fRot = (nRot > rot)
 		? (nRot > rot + 0.002) ? rot + 0.001 : nRot
 		: (nRot < rot - 0.002) ? rot - 0.001 : nRot
 		mesh.material.uniforms.rotation.value = fRot;
@@ -229,7 +229,7 @@ export default function Bg3d(props) {
 		const time = (performance.now() - timeOrigin);
 		const adjustedTime = time * 0.0005
 		material.uniforms["time"].value = adjustedTime;
-		
+
 		// lock to 60 fps
 		if (time - lastframeTime > 12) {
 			touch && touch.update(time)
