@@ -13,9 +13,9 @@ export default function Contact() {
 	function sendMessage() {
 		fetch('/.netlify/functions/sendMessage', {
 			method: 'post',
-			body: {
+			body: JSON.stringify({
 				name, email, message
-			}
+			})
 		})
 		.then(e => {
 			console.log(e);

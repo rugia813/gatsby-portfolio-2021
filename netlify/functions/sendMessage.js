@@ -1,7 +1,4 @@
-const querystring = require("querystring");
 const fetch = require("node-fetch");
-
-const url = process.env.TELEGRAM_URL
 
 exports.handler = async (event, context) => {
 	// Only allow POST
@@ -9,14 +6,18 @@ exports.handler = async (event, context) => {
 		return { statusCode: 405, body: "Method Not Allowed" };
 	}
 
-	const params = querystring.parse(event.body);
+	const params = JSON.parse(event.body);
 	const name = params.name;
 	const email = params.email;
 	const message = params.message;
-	const text = `${name}(${email}): ${message}`
+	const text = `<b>${name}</b>(${email}):\n ${message}`
 
-	return fetch(url + text)
-		.then(() => ({
+	return fetch(process.env.TELEGRAM_URL, {
+		method: 'POST',
+		headers: { "content-type": "application/json" },
+		body: `{ "text": "${text}" }`,
+	})
+		.then((e) => ({
 			statusCode: 200,
 			body: `Message sent.`,
 		}))
