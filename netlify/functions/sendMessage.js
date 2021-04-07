@@ -11,15 +11,9 @@ exports.handler = async (event, context) => {
 	const name = params.name;
 	const email = params.email;
 	const message = params.message;
+	const text = `${name}(${email}): ${message}`
 
-	return fetch(process.env.TELEGRAM_URL, {
-		headers: {
-			"content-type": "application/json",
-		},
-		method: "GET",
-		querystring: `${name}(${email}):
-			${message}`
-	})
+	return fetch(process.env.TELEGRAM_URL + text)
 		.then(() => ({
 			statusCode: 200,
 			body: `Message sent.`,

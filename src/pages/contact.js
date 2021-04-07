@@ -30,7 +30,7 @@ export default function Contact() {
 			<label> e-mail: </label>
 			<input name="email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
 			<label> Message: </label>
-			<textarea name="message" onChange={e => setMessage(e.target.value)}>{message}</textarea>
+			<textarea name="message" value={message} onChange={e => setMessage(e.target.value)} />
 			<input type="submit" value="Submit" onClick={sendMessage} />
 		</Container>
 	)
