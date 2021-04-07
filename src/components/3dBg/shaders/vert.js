@@ -52,7 +52,7 @@ void main() {
 	cur.xz = rotHor.xy;
 	cur.y = rotVer.x;
 	vec4 mvPosition = modelViewMatrix * cur;
-	float f = texture2D(uTouch, vec2(map(p.x,0.0,1.0, 0.5,0.8),map(cur.y,0.0,1.0, 0.5,1.0))).r;
+	float f = texture2D(uTouch, vec2(map(rotHor.x,0.0,1.0, 0.5,0.8),map(cur.y,0.0,1.0, 0.5,1.0))).r;
 
 	// float scale = 10.0 - ((f - 0.5) * 120.0);
 	float scale = 4.0 + noise(time * 3. + angle * 2.) * 6.;
