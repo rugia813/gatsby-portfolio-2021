@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
 		},
 		method: "POST",
 		body: JSON.stringify({ text: `${name}(${email}):
-		${text}` }),
+		${message}` }),
 	})
 		.then(() => ({
 			statusCode: 200,

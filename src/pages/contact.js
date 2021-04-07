@@ -11,7 +11,7 @@ export default function Contact() {
 	const [message, setMessage] = useState('')
 
 	function sendMessage() {
-		fetch('netlify/functions/sendMessage', {
+		fetch('/.netlify/functions/sendMessage', {
 			method: 'post',
 			body: {
 				name, email, message
