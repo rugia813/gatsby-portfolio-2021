@@ -50,23 +50,44 @@ const ContactInfo = styled.div`
 	padding: 10px;
 `
 
-function sendMessage(name, email, message) {
-	fetch('/.netlify/functions/sendMessage', {
-		method: 'post',
-		body: JSON.stringify({
-			name, email, message
-		})
-	})
-	.then(e => {
-		console.log(e);
-	})
-}
-
 export default function Contact() {
 
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [message, setMessage] = useState('')
+	const [status, setStatus] = useState(0)
+
+	function sendMessage() {
+		if (!validate()) return false
+		setStatus(1)
+		fetch('/.netlify/functions/sendMessage', {
+			method: 'post',
+			body: JSON.stringify({
+				name, email, message
+			})
+		})
+		.then(e => {
+			if (e.status === 200) {
+				setStatus(2)
+			} else {
+				setStatus(0)
+			}
+		})
+	}
+
+	function getSubmitBtnText() {
+		switch(status) {
+			case 0:
+				return 'Submit'
+			case 1:
+				return 'Sending...'
+			case 2:
+				return '✔'
+		}
+	}
+	function validate() {
+		return status === 0 && name && email && message
+	}
 
 	return (
 		<Container>
@@ -94,7 +115,7 @@ export default function Contact() {
 					<textarea name="message" value={message} onChange={e => setMessage(e.target.value)} />
 				</label>
 
-				<SubmitButton onClick={e => sendMessage(name, email, message)}>Submit</SubmitButton>
+				<SubmitButton disabled={!validate()} onClick={sendMessage}>{getSubmitBtnText()}</SubmitButton>
 			</MessagePanel>
 		</Container>
 	)

@@ -22,6 +22,16 @@ export const BaseButton = styled.div`
 		background-color: rgba(128, 128, 200, .5);
 	}
 
+	&[disabled] {
+		background-color: gray;
+		border-color: darkgray;
+		/* color: darkgray; */
+		cursor: default;
+		:hover::after {
+			border-color: gray;
+		}
+	}
+
 	::after {
 		content: '';
 		border: 1px solid;
