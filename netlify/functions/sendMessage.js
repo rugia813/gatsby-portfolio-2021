@@ -1,7 +1,8 @@
 const querystring = require("querystring");
 const fetch = require("node-fetch");
 
-console.log('process.env.TELEGRAM_URL: ', process.env.TELEGRAM_URL);
+const url = process.env.TELEGRAM_URL
+
 exports.handler = async (event, context) => {
 	// Only allow POST
 	if (event.httpMethod !== "POST") {
@@ -14,8 +15,7 @@ exports.handler = async (event, context) => {
 	const message = params.message;
 	const text = `${name}(${email}): ${message}`
 
-	console.log('process.env.TELEGRAM_URL: ', process.env.TELEGRAM_URL);
-	return fetch(process.env.TELEGRAM_URL + text)
+	return fetch(url + text)
 		.then(() => ({
 			statusCode: 200,
 			body: `Message sent.`,
