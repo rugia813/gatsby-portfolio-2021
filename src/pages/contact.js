@@ -6,8 +6,12 @@ import { BaseButton } from "../components/baseButton";
 const Container = styled.div`
 	height: 100%;
 	color: white;
-	font-size: clamp(24px, 6vw, 32px);
+	font-size: clamp(21px, 4vw, 28px);
 	display: flex;
+
+	${desktop} {
+		flex-wrap: wrap;
+	}
 
 	${mobile} {
 		flex-direction: column;
@@ -34,13 +38,16 @@ const MessagePanel = styled.div`
 		/* height: max(36px, 10vh); */
 	}
 	textarea {
-		width: min(480px, 80vw);
+		width: min(360px, 80vw);
 		font-size: .7em;
 		height: min(40vh, 360px);
+		resize: none;
 	}
 `
 const SubmitButton = styled(BaseButton)`
-	width: 100%;
+	width: min(360px, 80vw);
+	margin: auto 0;
+	font-size: .7em;
 `
 const ContactInfo = styled.div`
 	flex: 1;
@@ -96,7 +103,7 @@ export default function Contact() {
 				<div>github: <a href="https://github.com/rugia813">https://github.com/rugia813</a></div>
 				<div>linkedIn: </div>
 			</ContactInfo>
-			<hr/>
+
 			<MessagePanel>
 				<h2>Leave a Message</h2>
 

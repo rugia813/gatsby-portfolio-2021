@@ -15,7 +15,7 @@ export const BaseButton = styled.div`
 
 	:hover {
 		background-color: rgba(0, 0, 200, .5);
-		border-color: rgba(160, 160, 255);
+		border-color: rgb(160, 160, 255);
 	}
 
 	:active {
@@ -23,10 +23,14 @@ export const BaseButton = styled.div`
 	}
 
 	&[disabled] {
-		background-color: gray;
-		border-color: darkgray;
+		/* background-color: gray;
+		border-color: darkgray; */
 		/* color: darkgray; */
 		cursor: default;
+		:hover {
+			background-color: rgba(200, 0, 0, .5);
+			border-color: rgb(200, 50, 50);
+		}
 		:hover::after {
 			border-color: gray;
 		}

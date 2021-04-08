@@ -28,7 +28,7 @@ const Intro = styled.div`
     position: relative;
     font-size: 3vh;
     color: #d7ac2f;
-    
+
     animation-name: textFadeInBottom;
     animation-delay: 2s;
     animation-duration: 1.5s;
@@ -58,12 +58,12 @@ const Intro = styled.div`
 
 `
 const textGrow = css`
-  transition: transform .1s ease-in-out; 
+  transition: transform .1s ease-in-out;
   transition-delay: .4s;
   display: inline-block;
   min-width: 2rem;
-  &:hover { 
-      transform: scale(1.1); 
+  &:hover {
+      transform: scale(1.1);
       transition-delay: 0s;
   }
 `
@@ -91,7 +91,7 @@ const IndexPage = () => {
     <main>
       <Intro>
         <div className="intro-author"> {name} </div>
-        <div className="intro-occupation">Web Developer</div>
+        <div className="intro-occupation">Frontend Developer</div>
       </Intro>
       <Bg3d scale={scale} />
     </main>
