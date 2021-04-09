@@ -175,8 +175,8 @@ export default function ProjectList({ data }) {
         changeCur({deltaY: 1})
     }
 
-    const [cur, setCur] = useState({})
     const [idx, setIdx] = useState(0)
+    const [cur, setCur] = useState(nodes[idx])
     useEffect(() => {
         setCur(nodes[idx])
     }, [idx])
