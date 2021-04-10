@@ -25,7 +25,7 @@ const Nav = styled.nav`
   ${desktop} {
     font-size: 16px;
     border-right: white 1px solid;
-    animation: nav-slide-in .5s forwards;
+    animation: nav-slide-in 1.3s forwards;
     animation-timing-function: ease;
   }
   @keyframes nav-slide-in {

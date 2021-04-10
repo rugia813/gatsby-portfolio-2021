@@ -182,7 +182,7 @@ export default function Bg3d(props) {
 	}
 	function addListeners() {
 		control.addListener('interactive-move', onInteractiveMove);
-		document.body.addEventListener('click', toggleModel);
+		// document.body.addEventListener('click', toggleModel);
 		control.objects.push(hitArea);
 		control.enable();
 	}
@@ -197,7 +197,7 @@ export default function Bg3d(props) {
 	function onInteractiveMove(e) {
 		const uv = e.intersectionData.uv;
 		if (touch) touch.addTouch(uv);
-		window.a = touch
+		
 		const rot = {
 			x: getRotVal(uv.x, mesh.material.uniforms.rotation.value.x),
 			y: getRotVal(uv.y, mesh.material.uniforms.rotation.value.y),
