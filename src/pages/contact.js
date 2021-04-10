@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "@emotion/styled"
-import { mobile, desktop } from "../styles/consts";
+import { mobile, desktop, blurColor } from "../styles/consts";
 import { BaseButton } from "../components/baseButton";
 
 const Container = styled.div`
@@ -35,7 +35,15 @@ const MessagePanel = styled.div`
 		width: min(360px, 80vw);
 		font-size: 1em;
 		padding: 3px;
-		/* height: max(36px, 10vh); */
+		background-color: rgba(0,0,0,0);
+		color: white;
+		border: none;
+		
+		:focus {
+			border: none;
+			outline: none;
+			background-color: ${blurColor};
+		}
 	}
 	textarea {
 		width: min(360px, 80vw);
@@ -109,17 +117,17 @@ export default function Contact() {
 
 				<label>
 					Name:
-					<input name="name" value={name} onChange={e => setName(e.target.value)} />
+					<input name="name" placeholder="your name" value={name} onChange={e => setName(e.target.value)} />
 				</label>
 
 				<label>
 					e-mail:
-					<input name="email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
+					<input name="email" placeholder="your email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
 				</label>
 
 				<label>
 					Message:
-					<textarea name="message" value={message} onChange={e => setMessage(e.target.value)} />
+					<textarea name="message" placeholder="your message" value={message} onChange={e => setMessage(e.target.value)} />
 				</label>
 
 				<SubmitButton disabled={!validate()} onClick={sendMessage}>{getSubmitBtnText()}</SubmitButton>
