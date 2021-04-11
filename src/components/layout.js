@@ -11,8 +11,6 @@ const Nav = styled.nav`
   height: 100vh;
   width: 75px;
   /* box-shadow: 5px 5px 5px 1px ${navColor}; */
-  backdrop-filter: blur(10px);
-  background-color: ${navColor};
   color: white;
   display: flex;
   align-items: center;
@@ -23,6 +21,8 @@ const Nav = styled.nav`
   }
 
   ${desktop} {
+    backdrop-filter: blur(10px);
+    background-color: ${navColor};
     font-size: 16px;
     border-right: white 1px solid;
     animation: nav-slide-in 1.3s forwards;
@@ -44,7 +44,7 @@ const Nav = styled.nav`
   ${mobile} {
     height: 50px;
     width: 100vw;
-    border-bottom: white 1px solid;
+    /* border-bottom: white 1px solid; */
     #check {
       ~ .checkbtnlabel::after {
         content: '三';

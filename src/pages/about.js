@@ -1,6 +1,14 @@
 import React from "react"
 import styled from "@emotion/styled"
+import { blurColor } from "../styles/consts"
 const Container = styled.div`
+  color: white;
+`
+const Intro = styled.div`
+  /* background-color: ${blurColor}; */
+  width: 100%;
+  min-height: 20vh;
+  padding: 20px;
 `
 
 const Stackoverflow = () => (
@@ -13,8 +21,13 @@ const Stackoverflow = () => (
   </a>
 )
 export default function UsersList() {
+  const exp = new Date().getFullYear() - 2017
   return (
     <Container>
+      <Intro>
+        <p>Hi, my name is Chun-Wei Li(Jay Li),</p>
+        <p>I am a front-end develper with {exp} years of experiance.</p>
+      </Intro>
       <Stackoverflow />
     </Container>
   )
