@@ -1,14 +1,12 @@
 ---
-title: "3D Lottery Animation"
-slug: "lottery"
-cover: "/imgs/lottery.png"
-date: "16/06/2020"
+slug: lottery
+date: 16/06/2020
+title: 3D Lottery Animation
+cover: /imgs/lottery.png
 tags:
-    - three.js
-    - canon.js
+  - three.js
+  - canon.js
 ---
-![lottery](/imgs/lottery.png "lottery")
-
-try out 3d physics engine
+a lottery animation made with three.js & cannon.js.
 
 Link: https://lottery-animation.netlify.app
