@@ -40,8 +40,8 @@ export default function UsersList() {
       <Intro>
         <p>
           Hi, my name is Chun-Wei Li(Jay Li),
-          I am a front-end develper with {exp} years of experiance.
-          Most of my work experiance involves building SPA with Vue.js.
+          I am a front-end developer with {exp} years of experience.
+          Most of my work experience involves building SPA with Vue.js.
           I am always learning new things, and trying to make my projects better.
         </p>
       </Intro>
