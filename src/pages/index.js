@@ -18,7 +18,7 @@ const Intro = styled.div`
     white-space: nowrap;
 
     animation-name: textFadeInLeft;
-    animation-delay: 1.5s;
+    /* animation-delay: 1.5s; */
     animation-duration: 1.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
@@ -30,7 +30,7 @@ const Intro = styled.div`
     color: #d7ac2f;
 
     animation-name: textFadeInBottom;
-    animation-delay: 2s;
+    animation-delay: .5s;
     animation-duration: 1.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;

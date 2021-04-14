@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=RocknRoll+One&display=swap');
 
 * {
   margin: 0;
@@ -8,6 +7,9 @@
   // list-style: none;
   box-sizing: border-box;
   font-family: 'RocknRoll One', Tahoma, sans-serif;
+  ::selection {
+    background-color: #79611b;
+  }
 }
 
 a {
