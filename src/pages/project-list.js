@@ -29,8 +29,8 @@ const ProjectPanel = styled.div`
         transition: 1s ease-in-out;
 
         ${desktop} {
-            max-width: 500px;
-            height: min-content;
+            width: 30vw;
+            height: 30vh;
         }
 
         ${mobile} {
@@ -74,6 +74,8 @@ const ProjectPanel = styled.div`
         transition: 1s ease-in-out;
         overflow: hidden;
         height: 100%;
+        display: flex;
+        align-items: center;
 
         img {
             width: 100%;
@@ -210,7 +212,7 @@ export default function ProjectList({ data }) {
 
 export const pageQuery = graphql`
     query {
-        allMarkdownRemark {
+        allMarkdownRemark(sort: {order: DESC, fields: frontmatter___date}) {
             edges {
                 node {
                     frontmatter {
