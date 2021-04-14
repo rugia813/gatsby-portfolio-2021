@@ -84,6 +84,12 @@ const Menu = styled.ul`
       a {
         color: white;
         text-decoration: none;
+        transition: 1s all ease;
+
+        &.active {
+          color: #ffde7c;
+          font-size: 24px;
+        }
       }
     }
 
@@ -176,10 +182,10 @@ export default function Layout({ children }) {
           {/* <i class="fas fa-bars"></i> */}
         </label>
         <Menu>
-          <li><div className="bound"><Link to="/">Home</Link></div></li>
-          <li><div className="bound"><Link to="/about">About</Link></div></li>
-          <li><div className="bound"><Link to="/project-list">Projects</Link></div></li>
-          <li><div className="bound"><Link to="/contact">Contact</Link></div></li>
+          <li><div className="bound"><Link activeClassName="active" to="/">Home</Link></div></li>
+          <li><div className="bound"><Link activeClassName="active" to="/about/">About</Link></div></li>
+          <li><div className="bound"><Link activeClassName="active" to="/project-list/">Projects</Link></div></li>
+          <li><div className="bound"><Link activeClassName="active" to="/contact/">Contact</Link></div></li>
         </Menu>
       </Nav>
       <Content>
