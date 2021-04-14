@@ -69,6 +69,8 @@ const Nav = styled.nav`
   }
 `
 const Menu = styled.ul`
+  list-style: none;
+
   ${Nav} & {
     display: flex;
     flex-direction: column;
@@ -81,6 +83,7 @@ const Menu = styled.ul`
 
       a {
         color: white;
+        text-decoration: none;
       }
     }
 

@@ -3,19 +3,32 @@ import styled from "@emotion/styled"
 import { blurColor } from "../styles/consts"
 const Container = styled.div`
   color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 `
 const Intro = styled.div`
   /* background-color: ${blurColor}; */
-  width: 100%;
+  width: 50%;
+  min-width: 400px;
   min-height: 20vh;
-  padding: 20px;
+`
+
+const Social = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  a {
+    width: min-content;
+  }
 `
 
 const Stackoverflow = () => (
   <a href="https://stackoverflow.com/users/10253925/jay-li">
-    <img src="https://stackoverflow.com/users/flair/10253925.png?theme=dark" 
-      width="208" height="58" 
-      alt="profile for Jay Li at Stack Overflow, Q&amp;A for professional and enthusiast programmers" 
+    <img src="https://stackoverflow.com/users/flair/10253925.png?theme=dark"
+      width="208" height="58"
+      alt="profile for Jay Li at Stack Overflow, Q&amp;A for professional and enthusiast programmers"
       title="profile for Jay Li at Stack Overflow, Q&amp;A for professional and enthusiast programmers"
     />
   </a>
@@ -25,10 +38,24 @@ export default function UsersList() {
   return (
     <Container>
       <Intro>
-        <p>Hi, my name is Chun-Wei Li(Jay Li),</p>
-        <p>I am a front-end develper with {exp} years of experiance.</p>
+        <p>
+          Hi, my name is Chun-Wei Li(Jay Li),
+          I am a front-end develper with {exp} years of experiance.
+          Most of my work experiance involves building SPA with Vue.js.
+          I am always learning new things, and trying to make my projects better.
+        </p>
       </Intro>
-      <Stackoverflow />
+
+      <Social>
+        <div>LinkIn:</div>
+        <a href="https://linkin.com">https://linkin.com</a>
+
+        <div>Github:</div>
+        <a href="https://github.com/rugia813">https://github.com/rugia813</a>
+
+        <div>Stackoverflow:</div>
+        <Stackoverflow />
+      </Social>
     </Container>
   )
 }

@@ -38,7 +38,7 @@ const MessagePanel = styled.div`
 		background-color: rgba(0,0,0,0);
 		color: white;
 		border: none;
-		
+
 		:focus {
 			border: none;
 			outline: none;
@@ -108,8 +108,6 @@ export default function Contact() {
 		<Container>
 			<ContactInfo>
 				<div>e-mail: <a href="mailto:rugia813@yahoo.com.tw">rugia813@yahoo.com.tw</a></div>
-				<div>github: <a href="https://github.com/rugia813">https://github.com/rugia813</a></div>
-				<div>linkedIn: </div>
 			</ContactInfo>
 
 			<MessagePanel>
