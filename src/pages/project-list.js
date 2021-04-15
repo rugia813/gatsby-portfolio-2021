@@ -79,6 +79,8 @@ const ProjectPanel = styled.div`
 
         img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         ${desktop} {
@@ -122,6 +124,11 @@ const DetailPanel = styled.div`
     display: grid;
     place-content: center;
     filter: opacity(0);
+
+    ${desktop} {
+        max-width: 50%;
+        margin: 0 auto;
+    }
 
     &.show {
         height: 100%;
