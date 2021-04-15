@@ -2,7 +2,7 @@
 slug: painter
 date: 04/06/2018
 title: Simple Online Multi-Player Painter
-cover: /imgs/painter.JPG
+cover: /assets/photo_2021-04-15_13-40-01.jpg
 tags:
   - canvas
   - socket
