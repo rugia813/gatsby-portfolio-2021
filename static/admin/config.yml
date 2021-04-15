@@ -11,7 +11,7 @@ collections:
     create: true
     fields:
       - { name: slug, label: Slug }
-      - { name: date, label: Date, widget: datetime }
+      - { name: date, label: Date, widget: date, format: 'DD/MM/YYYY' }
       - { name: title, label: Title }
       - { name: cover, label: Cover, widget: image }
       - { name: tags, label: Tags, widget: list }

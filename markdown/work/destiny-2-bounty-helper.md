@@ -1,6 +1,6 @@
 ---
 slug: bountyHelper
-date: 2020-11-03T02:27:30.519Z
+date: '23/11/2020'
 title: Destiny 2 Bounty Helper
 cover: https://i.imgur.com/rSHR0q7.png
 tags:

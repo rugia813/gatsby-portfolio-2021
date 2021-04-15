@@ -123,6 +123,7 @@ const DetailPanel = styled.div`
     transition: 1s ease-in-out;
     display: grid;
     place-content: center;
+    align-content: space-evenly;
     filter: opacity(0);
 
     ${desktop} {
@@ -147,6 +148,7 @@ export default function ProjectList({ data }) {
     const nodes = edges.map(({node}) => ({
         key: node.frontmatter.slug,
         title: node.frontmatter.title,
+        date: node.frontmatter.date,
         content: node.html,
         slug: node.frontmatter.slug,
         cover: node.frontmatter.cover,
@@ -211,6 +213,7 @@ export default function ProjectList({ data }) {
             </ProjectSelector>
 
             <DetailPanel className={inDetail ? 'show' : ''}>
+                {cur.date}
                 <div dangerouslySetInnerHTML={{ __html: cur.content + '' }} />
             </DetailPanel>
         </ProjectPanel>
