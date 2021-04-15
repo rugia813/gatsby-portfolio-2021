@@ -47,8 +47,8 @@ export default function UsersList() {
       </Intro>
 
       <Social>
-        <div>LinkIn:</div>
-        <a href="https://linkin.com">https://linkin.com</a>
+        <div>LinkedIn:</div>
+        <a href="https://www.linkedin.com/in/jay-li-b1399079/">https://www.linkedin.com/in/jay-li-b1399079/</a>
 
         <div>Github:</div>
         <a href="https://github.com/rugia813">https://github.com/rugia813</a>
