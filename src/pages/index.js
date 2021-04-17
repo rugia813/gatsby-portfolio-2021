@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import Bg3d from "../components/3dBg/3dBg";
 import { _breakPoint } from "../styles/consts";
 import { Helmet } from "react-helmet";
+import ogimage from "../../static/imgs/ogimage.png";
 
 const Intro = styled.div`
   display: block;
@@ -90,11 +91,14 @@ const IndexPage = () => {
 
   return (
     <main>
-      <Helmet htmlAttributes={{
-        lang: 'en',
-      }}>
+      <Helmet htmlAttributes={{ lang: 'en' }}>
         <meta charSet="utf-8" />
         <title>Jay Li's Portfolio Site</title>
+        <meta name="description" content="Portfolio website for Jay Li, a frontend developer" />
+        <meta property="og:title" content="Jay Li" />
+        <meta property="og:description" content="My portfolio website" />
+        <meta property="og:url" content="https://jayli.netlify.com/" />
+        <meta property="og:image" content={ogimage} />
       </Helmet>
       <Intro>
         <div className="intro-author"> {name} </div>
