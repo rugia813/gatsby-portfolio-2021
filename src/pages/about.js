@@ -1,12 +1,18 @@
 import React from "react"
 import styled from "@emotion/styled"
-import { blurColor } from "../styles/consts"
+import { blurColor, mobile } from "../styles/consts"
+import { GithubIcon, LinkedinIcon, StackoverflowIcon } from "../components/icons"
+
 const Container = styled.div`
   color: white;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+
+  ${mobile} {
+    align-items: center;
+  }
 `
 const Intro = styled.div`
   /* background-color: ${blurColor}; */
@@ -20,7 +26,7 @@ const Social = styled.div`
   flex-direction: column;
 
   a {
-    width: min-content;
+    width: 100%;
   }
 `
 
@@ -47,13 +53,13 @@ export default function UsersList() {
       </Intro>
 
       <Social>
-        <div>LinkedIn:</div>
+        <div><LinkedinIcon /> LinkedIn:</div>
         <a href="https://www.linkedin.com/in/jay-li-b1399079/">https://www.linkedin.com/in/jay-li-b1399079/</a>
 
-        <div>Github:</div>
+        <div><GithubIcon /> Github:</div>
         <a href="https://github.com/rugia813">https://github.com/rugia813</a>
 
-        <div>Stackoverflow:</div>
+        <div><StackoverflowIcon /> Stackoverflow:</div>
         <Stackoverflow />
       </Social>
     </Container>
