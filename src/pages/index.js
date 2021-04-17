@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import Bg3d from "../components/3dBg/3dBg";
 import { _breakPoint } from "../styles/consts";
+import { Helmet } from "react-helmet";
 
 const Intro = styled.div`
   display: block;
@@ -89,6 +90,12 @@ const IndexPage = () => {
 
   return (
     <main>
+      <Helmet htmlAttributes={{
+        lang: 'en',
+      }}>
+        <meta charSet="utf-8" />
+        <title>Jay Li's Portfolio Site</title>
+      </Helmet>
       <Intro>
         <div className="intro-author"> {name} </div>
         <div className="intro-occupation">Frontend Developer</div>
