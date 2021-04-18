@@ -169,7 +169,7 @@ export default function ProjectList({ data }) {
         setLocked(true)
         setTimeout(() => {
             setLocked(false)
-        }, 800);
+        }, 200);
 
         if (e.deltaY > 0) {
             // down
