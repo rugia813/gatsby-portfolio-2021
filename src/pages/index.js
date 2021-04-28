@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 import Bg3d from "../components/3dBg/3dBg";
 import { _breakPoint } from "../styles/consts";
 import { Helmet } from "react-helmet";
-import ogimage from "../../static/imgs/ogimage.png";
+import ogimage from "../../static/imgs/ogimage.jpg";
 
 const Intro = styled.div`
   display: block;
