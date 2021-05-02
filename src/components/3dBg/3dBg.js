@@ -69,7 +69,7 @@ export default function Bg3d(props) {
 		geometry.index = circleGeometry.index;
 		geometry.attributes = circleGeometry.attributes;
 
-		const ico = new THREE.IcosahedronGeometry(1.1, 9)
+		const ico = new THREE.IcosahedronGeometry(1.1, 14)
 
 		const sg = new THREE.TorusKnotGeometry(
 			1,
