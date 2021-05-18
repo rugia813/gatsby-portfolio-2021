@@ -98,7 +98,7 @@ const IndexPage = () => {
         <meta property="og:title" content="Jay Li" />
         <meta property="og:description" content="My portfolio website" />
         <meta property="og:url" content="https://jayli.netlify.com/" />
-        <meta property="og:image" content={ogimage} />
+        <meta property="og:image" content={'https://jayli.netlify.com/' + ogimage} />
       </Helmet>
       <Intro>
         <div className="intro-author"> {name} </div>
