@@ -5,6 +5,7 @@ import Bg3d from "../components/3dBg/3dBg";
 import { _breakPoint } from "../styles/consts";
 import { Helmet } from "react-helmet";
 import ogimage from "../../static/imgs/ogimage.jpg";
+import loadingSVG from '../../static/svgs/loading.svg';
 
 const Intro = styled.div`
   display: block;
@@ -70,10 +71,18 @@ const textGrow = css`
   }
 `
 
+const Loading = styled.img`
+  width: 10vw;
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+`
+
 const IndexPage = () => {
   const name = 'Jay Li'.split('').map((e) => <span css={textGrow} key={e}>{e}</span>)
 
   const [scale, setScale] = useState(1400)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     rescale3dModel()
@@ -104,7 +113,9 @@ const IndexPage = () => {
         <div className="intro-author"> {name} </div>
         <div className="intro-occupation">Frontend Developer</div>
       </Intro>
-      <Bg3d scale={scale} />
+      { loading && <Loading src={loadingSVG} /> }
+      <Bg3d scale={scale} onload={() => setLoading(false) & console.log(1)} />
+
     </main>
   )
 }

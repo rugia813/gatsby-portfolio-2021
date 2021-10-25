@@ -3,6 +3,7 @@ import styled from "@emotion/styled"
 import { graphql } from 'gatsby'
 import { mobile, desktop } from "../styles/consts";
 import { BaseButton } from "../components/baseButton";
+import loadingSVG from '../../static/svgs/loading.svg'
 
 const ProjectPanel = styled.div`
     display: flex;
@@ -142,6 +143,10 @@ const DetailPanel = styled.div`
     }
 `
 
+const Loading = styled.img`
+  transform: scale(0.5) translateX(25%);
+`
+
 export default function ProjectList({ data }) {
     const { allMarkdownRemark } = data
     const { edges } = allMarkdownRemark
@@ -190,7 +195,10 @@ export default function ProjectList({ data }) {
     const [cur, setCur] = useState(nodes[idx])
     useEffect(() => {
         setCur(nodes[idx])
+        setLoading(true)
     }, [idx])
+
+    const [loading, setLoading] = useState(true)
 
     return  (
         <ProjectPanel onWheel={changeCur}>
@@ -208,7 +216,8 @@ export default function ProjectList({ data }) {
                 </div>
 
                 <div className={`cover ${inDetail ? 'hidden' : ''}`} ref={coverRef}>
-                    <img src={cur.cover} alt={cur.title + ' image'} />
+                    {loading && <Loading src={loadingSVG} />}
+                    <img src={cur.cover} alt={cur.title + ' image'} onLoad={e => setLoading(false)} />
                 </div>
             </ProjectSelector>
 

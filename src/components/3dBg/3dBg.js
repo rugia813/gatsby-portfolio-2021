@@ -29,6 +29,7 @@ let active = true
 export default function Bg3d(props) {
 	const container = useRef(null)
 	useEffect(() => {
+		props.onload()
 		timeOrigin = performance.now()
 		lastframeTime = 0
 		init()
@@ -197,7 +198,7 @@ export default function Bg3d(props) {
 	function onInteractiveMove(e) {
 		const uv = e.intersectionData.uv;
 		if (touch) touch.addTouch(uv);
-		
+
 		const rot = {
 			x: getRotVal(uv.x, mesh.material.uniforms.rotation.value.x),
 			y: getRotVal(uv.y, mesh.material.uniforms.rotation.value.y),
