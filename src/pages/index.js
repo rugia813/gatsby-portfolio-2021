@@ -114,7 +114,7 @@ const IndexPage = () => {
         <div className="intro-occupation">Frontend Developer</div>
       </Intro>
       { loading && <Loading src={loadingSVG} /> }
-      <Bg3d scale={scale} onload={() => setLoading(false) & console.log(1)} />
+      <Bg3d scale={scale} onload={() => setLoading(false)} />
 
     </main>
   )

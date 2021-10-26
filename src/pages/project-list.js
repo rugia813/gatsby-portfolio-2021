@@ -193,12 +193,11 @@ export default function ProjectList({ data }) {
 
     const [idx, setIdx] = useState(0)
     const [cur, setCur] = useState(nodes[idx])
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         setCur(nodes[idx])
         setLoading(true)
     }, [idx])
-
-    const [loading, setLoading] = useState(true)
 
     return  (
         <ProjectPanel onWheel={changeCur}>

@@ -25,11 +25,15 @@ const Nav = styled.nav`
     background-color: ${navColor};
     font-size: 16px;
     border-right: white 1px solid;
-    animation: nav-slide-in 1.3s forwards;
-    animation-timing-function: ease;
+    animation: nav-slide-in 3.3s forwards;
+    animation-timing-function: linear;
   }
   @keyframes nav-slide-in {
     0% {
+      height: 0%;
+      background-color: rgba(0,0,0,0);
+    }
+    40% {
       height: 0%;
       background-color: rgba(0,0,0,0);
     }
@@ -95,15 +99,16 @@ const Menu = styled.ul`
 
     ${desktop} {
       li {
+        --delayBase: 2s;
         writing-mode: tb;
         transform: rotate( 180deg );
         margin-bottom: 64px;
         width: 50%;
 
-        :nth-of-type(1) { --fadeInDelay: .5s; }
-        :nth-of-type(2) { --fadeInDelay: .7s; }
-        :nth-of-type(3) { --fadeInDelay: .9s; }
-        :nth-of-type(4) { --fadeInDelay: 1.1s; }
+        :nth-of-type(1) { --fadeInDelay: calc(var(--delayBase) + .5s); }
+        :nth-of-type(2) { --fadeInDelay: calc(var(--delayBase) + .7s); }
+        :nth-of-type(3) { --fadeInDelay: calc(var(--delayBase) + .9s); }
+        :nth-of-type(4) { --fadeInDelay: calc(var(--delayBase) + 1.1s); }
 
         .bound {
           overflow: hidden;
