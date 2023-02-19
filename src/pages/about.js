@@ -45,10 +45,28 @@ export default function UsersList() {
     <Container>
       <Intro>
         <p>
-          Hi, my name is Chun-Wei Li(Jay Li),
-          I am a front-end developer with {exp} years of experience.
-          Most of my work experience involves building SPA with Vue.js.
-          I am always learning new things, and trying to make my projects better.
+          Hello, I'm Chun-Wei Li, also known as Jay, and I'm a front-end developer with {exp} years of experience specializing in building single-page applications (SPA) with Vue.js.
+          My passion for problem-solving and ability to learn quickly have been the driving forces behind my successful career in web development.
+        </p>
+        <br/>
+        <p>
+          Throughout my career, I've tackled a variety of complex challenges, which has allowed me to sharpen my skills in problem-solving, debugging, and troubleshooting.
+          I take pride in being able to break down complex issues into simple and manageable components and coming up with effective solutions.
+        </p>
+        <br/>
+        <p>
+          I'm always striving to learn new technologies, programming languages, and development methodologies to improve my skills and stay up-to-date with the latest trends in the industry.
+          I'm also passionate about exploring new libraries, and tools to help me optimize my development workflow and create more efficient and scalable code.
+        </p>
+        <br/>
+        <p>
+          In addition to my technical skills, I understand the importance of effective communication and collaboration in any development project.
+          I have a proven track record of working well in a team environment and contributing positively to the project's success.
+          I'm always open to feedback, willing to help others, and eager to learn from my colleagues to deliver the best results possible.
+        </p>
+        <br/>
+        <p>
+          Overall, I'm passionate about what I do, and I always look forward to new opportunities to put my skills to the test and create something truly exceptional.
         </p>
       </Intro>
 

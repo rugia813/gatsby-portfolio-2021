@@ -8,7 +8,7 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "$env:NODE_OPTIONS = '--openssl-legacy-provider'; gatsby develop",
     "start": "netlify dev",
     "build": "gatsby build",
     "serve": "gatsby serve",
