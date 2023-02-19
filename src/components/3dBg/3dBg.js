@@ -6,6 +6,7 @@ import TouchTexture from './TouchTexture.js';
 import Control from "./InteractiveControls.js";
 import vert from "./shaders/vert.js";
 import frag from "./shaders/frag.js";
+// @ts-ignore
 import circle from "/static/imgs/circle.png";
 
 const CanvasContainer = styled.div`
