@@ -1,7 +1,7 @@
 ---
 slug: rpg
 date: 19/02/2023
-title: Prototype of fast-paced turn based rpg
+title: Prototype of Fast-paced Turn Based RPG
 cover: /assets/annotation-2023-02-19-155153.png
 tags:
   - godot
