@@ -2,7 +2,7 @@
 slug: td
 date: 16/10/2024
 title: 2D Isometric TD Game
-cover: /assets/vjoulr.png
+cover: /assets/annotation-2024-10-16-104653.png
 tags:
   - godot
   - tdblender
